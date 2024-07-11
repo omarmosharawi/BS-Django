@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load my_filters %}
 
 {% block content %}
   <!-- Slider main container -->
-  {% include 'partials/slider.html' %}
+  {% include 'partials/slider.html' with slides=slides%}
 
   <div class="container my-5">
           <section>
@@ -10,201 +12,11 @@
               <p class="h1 text-center text-secondary">Featured books</p>
             </div>
             <div class="row">
+              {% for product in products %}
               <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Vue.js framework basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
+                  {% include 'common/product_card.html' with product=product %}
               </div>
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Operating systems</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Operating systems for programmers</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Graphic design basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">React.js framework basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Express.js framework basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Angular framework basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product card mb-4">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div
-                    class="card-img-overlay d-flex flex-column align-items-center justify-content-center"
-                  >
-                    <a class="btn btn-outline-light" href="product.html"
-                      >Add to cart</a
-                    >
-                    <a class="btn btn-outline-light mt-2" href="product.html"
-                      >Review</a
-                    >
-                  </div>
-                  <div class="card-body">
-                    <h6 class="text-muted">Author name</h6>
-                    <h6 class="card-title">Laravel framework basics</h6>
-                    <strong class="fw-bold text-success">0$</strong>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </section>
         </div>

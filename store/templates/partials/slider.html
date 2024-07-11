@@ -1,86 +1,82 @@
-<div class="main-slider my-auto">
-        <!-- Additional required wrapper -->
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
+<style>
+    body {
+      position: relative;
+      height: 100%;
+    }
 
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+<!--    .swiper {-->
+<!--      width: 100%;-->
+<!--      height: 100%;-->
+<!--    }-->
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+</style>
+
+<div class="swiper mySwiper">
+        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <!-- Slides -->
-          <div class="swiper-slide">
+          {% for slide in slides %}
+            <div class="swiper-slide">
             <div class="container pt-5">
               <div class="row">
                 <div class="col-md-4 text-center d-none d-lg-block">
                   <img
-                    src="https://via.placeholder.com/300"
-                    alt="..."
+                    src="{{ slide.image.url }}"
+                    alt="{{ slide.title }}"
                     class="img-fluid rounded"
                   />
                 </div>
                 <div class="col-md-8">
                   <h1 class="text-secondary">
-                    Title test
+                    {{ slide.title }}
                   </h1>
                   <blockquote class="blockquote mt-4">
                     <p class="text-muted">
-                      description test
+                      {{ slide.subtitle }}
                     </p>
                   </blockquote>
                 </div>
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="container pt-5">
-              <div class="row">
-                <div class="col-md-4 text-center d-none d-lg-block">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    alt="..."
-                    class="img-fluid rounded"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <h1 class="text-secondary">
-                    There are many variations of Lorem Ipsum passages available
-                  </h1>
-                  <blockquote class="blockquote mt-4">
-                    <p class="text-muted">
-                      There are many variations of passages of Lorem Ipsum available,
-                      but the majority have been modified in some form, by injected humour,
-                      or randomized words into the text. If you want to use a passage of Lorem Ipsum,
-                      you need to first check that there are no embarrassing or inappropriate words or phrases hidden in it.
-                    </p>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="container pt-5">
-              <div class="row">
-                <div class="col-md-4 text-center d-none d-lg-block">
-                  <img
-                    src="https://via.placeholder.com/300"
-                    alt="..."
-                    class="img-fluid rounded"
-                  />
-                </div>
-                <div class="col-md-8">
-                  <h1 class="text-secondary">
-                    There are many variations of Lorem Ipsum passages available
-                  </h1>
-                  <blockquote class="blockquote mt-4">
-                    <p class="text-muted">
-                      There are many variations of passages of Lorem Ipsum available,
-                      but the majority have been modified in some form, by injected humour,
-                      or randomized words into the text. If you want to use a passage of Lorem Ipsum,
-                      you need to first check that there are no embarrassing or inappropriate words or phrases hidden in it.
-                    </p>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
         <!-- If we need scrollbar -->
-        <!-- <div class="swiper-scrollbar"></div> -->
+<!--         <div class="swiper-scrollbar"></div>-->
       </div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
+    });
+</script>
