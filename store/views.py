@@ -19,18 +19,31 @@ def index(request):
 
 
 def product(request, pid):
+    product = Product.objects.get(pk=pid)
+
     return render(
         request,
-        'product.html'
+        'product.html',
+        {
+            'product': product
+        }
     )
 
 
 def category(request, cid=None):
     cat = None
+
+    query = request.GET.get('query')
+    cid = request.GET.get('category', cid)
+
     where = {}
+
     if cid:
         cat = Category.objects.get(pk=cid)
         where['category_id'] = cid
+
+    if query:
+        where['name__icontains'] = query
 
     products = Product.objects.filter(**where)
     paginator = Paginator(products, 9)
