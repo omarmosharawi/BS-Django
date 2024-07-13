@@ -1,3 +1,4 @@
+from django.contrib.sessions.models import Session
 from django.db import models
 
 # Create your models here.
@@ -55,6 +56,12 @@ class OrderProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+class Cart(models.Model):
+    item = models.JSONField(default=dict)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
 
 
 class Slider(models.Model):

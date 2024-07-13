@@ -1,4 +1,3 @@
-
 async function cartUpdate(e) {
     const { data } = await axios(e.dataset.url)
     const { message, items_count } = data
