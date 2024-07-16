@@ -3,5 +3,6 @@ from checkout import views
 
 
 urlpatterns = [
-    path('order', views.makeOrder, name='checkout.order')
+    path('strip', views.strip_transaction, name='checkout.strip'),
+    path('paypal', views.paypal_transaction, name='checkout.paypal'),
 ]

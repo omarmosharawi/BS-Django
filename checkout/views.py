@@ -1,5 +1,8 @@
+import math
+
 from django.shortcuts import render, redirect
 from .forms import UserInfoForm
+from .models import Transaction, PaymentMethod
 from store.models import Product, Cart, Order
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -7,10 +10,43 @@ from django.template.loader import render_to_string
 # Create your views here.
 
 
-def makeOrder(request):
-    if request.method != 'POST':
-        return redirect('store.checkout')
+# def makeOrder(request):
+#     if request.method != 'POST':
+#         return redirect('store.checkout')
+#
+#     form = UserInfoForm(request.POST)
+#     if form.is_valid():
+#         cart = Cart.objects.filter(session=request.session.session_key).last()
+#         products = Product.objects.filter(pk__in=cart.item)
+#
+#         total = 0
+#         for item in products:
+#             total += item.price
+#
+#         if total <= 0:
+#             return redirect('store.cart')
+#
+#         order = Order.objects.create(customer=form.cleaned_data, total=total)
+#         for product in products:
+#             order.orderproduct_set.create(product_id=product.id, price=product.price)
+#
+#         send_orderEmail(order, products)
+#
+#         cart.delete()
+#         return redirect('store.checkout-complete')
+#     else:
+#         return redirect('store.checkout')
 
+
+def strip_transaction(request):
+    transaction = makeTransaction(request, PaymentMethod.Stripe)
+
+
+def paypal_transaction(request):
+    transaction = makeTransaction(request, PaymentMethod.Paypal)
+
+
+def makeTransaction(request, pm):
     form = UserInfoForm(request.POST)
     if form.is_valid():
         cart = Cart.objects.filter(session=request.session.session_key).last()
@@ -21,18 +57,15 @@ def makeOrder(request):
             total += item.price
 
         if total <= 0:
-            return redirect('store.cart')
+            return None
 
-        order = Order.objects.create(customer=form.cleaned_data, total=total)
-        for product in products:
-            order.orderproduct_set.create(product_id=product.id, price=product.price)
-
-        send_orderEmail(order, products)
-
-        cart.delete()
-        return redirect('store.checkout-complete')
-    else:
-        return redirect('store.checkout')
+        return Transaction.objects.create(
+            customer=form.cleaned_data,
+            session=request.session.session_key,
+            payment_method=pm,
+            items=cart.item,
+            amount=math.ceil(total)
+        )
 
 
 def send_orderEmail(order, products):
