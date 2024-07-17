@@ -1,6 +1,7 @@
 async function cartUpdate(e) {
     const { data } = await axios(e.dataset.url)
     const { message, items_count } = data
+    switchPaymentMethod('stripe', data)
     notyf.success({
         message,
         dismissible: true,

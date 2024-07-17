@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
     'store',
     'checkout',
 ]
@@ -147,3 +148,7 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51Pd59aJqYowwKKcaGbagEPAhZpKa0zMD7F9tYkTNJLNsi
 STRIPE_SECRET_KEY = 'sk_test_51Pd59aJqYowwKKcawkyGsQQoPa9lLB0p6julwWuFv8BaW6Q0tiDJxiafizcZHEgQAPR6qo4b2pLffLNAq2m58CRX00eS3p0Knm'
 STRIPE_ENDPOINT_SECRET = 'whsec_c7844583fe0c1163051007be19d3792dd4a7bd7c2492003593d28d150637e9a7'
 CURRENCY = 'USD'
+
+# Paypal
+PAYPAL_TEST = True
+PAYPAL_EMAIL = 'sb-aolxc31630201@business.example.com'
