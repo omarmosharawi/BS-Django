@@ -6,8 +6,8 @@ from book_store import settings
 from .forms import UserInfoForm
 from .models import Transaction, PaymentMethod
 from store.models import Product, Cart, Order
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
+# from django.core.mail import send_mail
+# from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 
 import stripe
@@ -95,16 +95,16 @@ def makeTransaction(request, pm):
             amount=math.ceil(total))
 
 
-def send_orderEmail(order, products):
-    msg_html = render_to_string('emails/order.html',
-                                {
-                                    'order': order,
-                                    'products': products,
-                                })
-    send_mail(
-        subject='New Order',
-        html_message=msg_html,
-        message=msg_html,
-        from_email='noreply@example.com',
-        recipient_list=[order.customer['email']]
-    )
+# def send_orderEmail(order, products):
+#     msg_html = render_to_string('emails/order.html',
+#                                 {
+#                                     'order': order,
+#                                     'products': products,
+#                                 })
+#     send_mail(
+#         subject='New Order',
+#         html_message=msg_html,
+#         message=msg_html,
+#         from_email='noreply@example.com',
+#         recipient_list=[order.customer['email']]
+#     )
