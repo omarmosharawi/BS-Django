@@ -1,7 +1,5 @@
 {% load i18n my_filters %}
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <title></title>
@@ -57,7 +55,7 @@
                 <tbody>
                   <tr>
                     <td style="min-width: 70px; padding-bottom: 8px">
-                      {% trans 'Customer' %}:
+                      {% trans 'Customer' %} :
                     </td>
                     <td
                       style="
@@ -71,7 +69,7 @@
                   </tr>
                   <tr>
                     <td style="min-width: 70px; padding-bottom: 8px">
-                      {% trans 'Order' %}:
+                      {% trans 'Order' %} :
                     </td>
                     <td
                       style="
@@ -80,12 +78,12 @@
                         padding-bottom: 8px;
                       "
                     >
-                      #{{order.id}}
+                      {{ order.id }}
                     </td>
                   </tr>
                   <tr>
                     <td style="min-width: 70px; padding-bottom: 8px">
-                      {% trans 'Date' %}:
+                      {% trans 'Date' %} :
                     </td>
                     <td
                       style="
@@ -94,7 +92,7 @@
                         padding-bottom: 8px;
                       "
                     >
-                      {{order.created_at}}
+                      {{ order.created_at }}
                     </td>
                   </tr>
                 </tbody>
@@ -151,22 +149,22 @@
                           border-top: 1px solid #dee2e6;
                         "
                       >
-                        <a href="{{product.pdf_file_url}}"
-                           target="_blank"
-                           style="text-decoration: none; color: #000"
-                        >{{product.name}}</a>
+                        <a href="{{ product.pdf_file_url }}" target="_blank" style="text-decoration: name; color: #000">
+                          {{ product.name }}
+                        </a>
                       </td>
                       <td
                         style="
                           text-align: end;
                           padding: 12px;
                           border-top: 1px solid #dee2e6;
-                        ">
-                        {{product.price|currency}}
+                        "
+                      >
+                        {{ product.price|currency }}
                       </td>
                     </tr>
                   {% endfor %}
-                    <tr style="color: #333e48; overflow-x: hidden">
+                    <tr style="color: #d7b600; overflow-x: hidden">
                       <th
                         scope="row"
                         style="

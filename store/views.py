@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Product, Slider, Category, Cart
 from django.http import JsonResponse
 from django.utils.translation import gettext as _
-
+from checkout.webhooks import makeOrder
 # Create your views here.
 
 
@@ -115,6 +115,8 @@ def checkout(request):
 
 def checkout_complete(request):
     Cart.objects.filter(session=request.session.session_key).delete()
+    transaction_id = request.GET.get('invoice',None)
+    if(transaction_id != None): makeOrder(request.GET.get('invoice'))
     return render(
         request,
         'checkout-complete.html'

@@ -85,13 +85,12 @@ def paypal_transaction(request):
         'amount': transaction.amount,
         'invoice': transaction.id,
         'currency_code': settings.CURRENCY,
-        'return_url': f'http://{request.get_host()}{reverse("store.checkout-complete")}',
+        'return_url': f'http://{request.get_host()}{reverse("store.checkout-complete")}?invoice='+str(transaction.id),
         'cancel_url': f'http://{request.get_host()}{reverse("store.checkout")}',
         'notify_url': f'http://{request.get_host()}{reverse("checkout.paypal-webhook")}',
     })
 
-    html_output = form.render()
-    return HttpResponse(html_output)
+    return HttpResponse(form.render())
 
 
 def makeTransaction(request, pm):
